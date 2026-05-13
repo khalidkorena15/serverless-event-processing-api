@@ -1,0 +1,54 @@
+{
+  "Comment": "Validate name and save to DynamoDB",
+  "StartAt": "CheckName",
+  "States": {
+    "CheckName": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.name",
+          "IsPresent": true,
+          "Next": "SaveToDynamoDB"
+        }
+      ],
+      "Default": "RejectRequest"
+    },
+    "SaveToDynamoDB": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "arn:aws:lambda:us-east-1:985539786577:function:event-entry-handler",
+        "Payload.$": "$"
+      },
+      "Retry": [
+        {
+          "ErrorEquals": ["Lambda.ServiceException", "Lambda.TooManyRequestsException"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "Next": "HandleError",
+          "ResultPath": "$.error"
+        }
+      ],
+      "End": true
+    },
+    "HandleError": {
+      "Type": "Pass",
+      "Parameters": {
+        "message": "Something went wrong",
+        "error.$": "$.error"
+      },
+      "End": true
+    },
+    "RejectRequest": {
+      "Type": "Fail",
+      "Error": "MissingName",
+      "Cause": "Name field is required"
+    }
+  }
+}
