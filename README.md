@@ -16,7 +16,7 @@ Designed to demonstrate real-world cloud engineering skills using event-driven d
 
 
 
-\##  📌 Project Overview
+##  📌 Project Overview
 
 
 
@@ -38,7 +38,7 @@ This project implements a complete serverless pipeline that:
 
 
 
-\##  🏗️ Architecture
+##  🏗️ Architecture
 
 Client (Postman / Web / Mobile)
 
@@ -88,17 +88,17 @@ AWS Step Functions (my-validator-workflow)
 
 
 
-\##  ⚙️ Workflow Logic
+##  ⚙️ Workflow Logic
 
 
 
-\###  Valid Flow (name present)
+###  Valid Flow (name present)
 
 API → Lambda → Step Functions → CheckName ✅ → SaveToDynamoDB → DynamoDB → Success
 
 
 
-\###  Invalid Flow (name missing)
+###  Invalid Flow (name missing)
 
 API → Lambda → Step Functions → CheckName ❌ → RejectRequest → Fail
 
@@ -114,11 +114,11 @@ SaveToDynamoDB → Error → Retry (3x) → Catch → HandleError → End
 
 
 
-\##  🔁 Reliability Features
+##  🔁 Reliability Features
 
 
 
-\### Retry Policy
+### Retry Policy
 
 \- Error: States.ALL
 
@@ -144,7 +144,7 @@ SaveToDynamoDB → Error → Retry (3x) → Catch → HandleError → End
 
 
 
-\##  📊 Observability
+##  📊 Observability
 
 
 
@@ -163,12 +163,11 @@ SaveToDynamoDB → Error → Retry (3x) → Catch → HandleError → End
 \---
 
 
-
-\##  🧪 How to Test
-
+##  🧪 How to Test
 
 
-\###   1. Valid Request
+
+###   1. Valid Request
 
 ```json
 
@@ -186,7 +185,7 @@ Expected: 200 OK — data saved to DynamoDB
 
 
 
-\### 2. Invalid Request
+### 2. Invalid Request
 
 ```json
 
@@ -207,8 +206,7 @@ Expected: Execution Failed — MissingName error
 \---
 
 
-
-\##  📁 Project Structure
+##  📁 Project Structure
 
 serverless-event-processing/
 
@@ -238,7 +236,7 @@ serverless-event-processing/
 
 
 
-\##  🛠️ Tech Stack
+##    🛠️ Tech Stack
 
 
 
@@ -262,7 +260,7 @@ serverless-event-processing/
 
 
 
-\##  📸 Screenshots
+##    📸 Screenshots
 
 
 
@@ -282,7 +280,7 @@ All execution screenshots are available in the `/screenshots` folder showing:
 
 
  
-\##  👨‍💻 Author
+##    👨‍💻 Author
 
 
 
