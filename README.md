@@ -1,4 +1,4 @@
-\#     🚀 Serverless Event Processing System
+#     🚀 Serverless Event Processing System
 
 
 
